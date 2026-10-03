@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>A Letter For You</title>
+  <meta name="description" content="A little card, just for you." />
+  <meta name="theme-color" content="#2a0f24" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- twinkling background + glow where the card lands -->
+  <div class="sky" aria-hidden="true"></div>
+  <div class="floor-glow" aria-hidden="true"></div>
+
+  <!-- hearts rise from inside the card into this layer -->
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="stage" id="stage">
+    <!-- the beam of light connecting the laid card to the glass "lens" -->
+    <div class="beam" aria-hidden="true"></div>
+
+    <!-- the card -->
+    <button class="card-wrap" id="card" type="button" aria-label="Open your card">
+      <div class="card-shadow" aria-hidden="true"></div>
+      <div class="card">
+        <!-- inside page (visible once opened) -->
+        <div class="card-inside">
+          <div class="inside-paper">
+            <span class="inside-heart">♥</span>
+            <span class="line"></span><span class="line"></span><span class="line short"></span>
+            <span class="line"></span><span class="line"></span><span class="line short"></span>
+            <span class="inside-sign">xoxo</span>
+          </div>
+        </div>
+        <!-- front cover, opens like a book -->
+        <div class="card-cover">
+          <div class="cover-front">
+            <div class="cover-border"></div>
+            <div class="cover-to" id="coverTo">For You</div>
+            <div class="seal"><span>♥</span></div>
+            <div class="cover-sub">open with love</div>
+          </div>
+          <div class="cover-back">
+            <div class="cover-back-paper">
+              <span class="cover-back-flower">❦</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+
+    <div class="click-me" id="clickMe" aria-hidden="true">
+      <span class="click-ring"></span>
+      <span class="click-text">click me</span>
+      <svg class="click-arrow" viewBox="0 0 40 40" fill="none"><path d="M20 34 C 12 26, 10 16, 18 6 M18 6 l-6 3 M18 6 l2 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- glassmorphism lens / label showing the message -->
+    <section class="glass" id="glass" aria-labelledby="glassTitle" hidden>
+      <div class="glass-shine" aria-hidden="true"></div>
+      <div class="glass-label">
+        <svg class="lens-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M10 12.6c-.2-.2-2.6-1.7-2.6-3.2 0-.8.6-1.4 1.4-1.4.5 0 .9.3 1.2.7.3-.4.7-.7 1.2-.7.8 0 1.4.6 1.4 1.4 0 1.5-2.4 3-2.6 3.2z" fill="currentColor"/></svg>
+        <span>a little note, magnified</span>
+      </div>
+      <h1 class="glass-title" id="glassTitle"></h1>
+      <div class="glass-body">
+        <p class="sr-only" id="messageFull"></p>
+        <div class="message" id="message" aria-hidden="true"></div>
+        <p class="signature" id="signature" aria-hidden="true"></p>
+      </div>
+      <div class="glass-actions">
+        <button type="button" class="ghost-btn" id="skipBtn">show it all</button>
+        <button type="button" class="ghost-btn" id="replayBtn" hidden>close the card ↺</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
