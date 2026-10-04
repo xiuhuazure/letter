@@ -14,7 +14,7 @@ Open `script.js` and edit the `LETTER` block at the very top:
 ```js
 const LETTER = {
   to: "You",                 // front of the card: "For You"
-  greeting: "My dearest,",   // first line of the letter ("" → "Dear <to>,")
+  greeting: "",              // optional big first line, e.g. "My dearest,"
   message: [ "paragraph one", "paragraph two" ],
   signature: "Forever yours,\n— Me",
 };

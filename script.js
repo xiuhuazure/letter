@@ -3,13 +3,13 @@
    ---------------------------------------------------------
    - `to`        : shown on the front of the card ("For ...")
                    (you can also use a link like  index.html?to=Sam )
-   - `greeting`  : first line of the letter (leave "" for "Dear <to>,")
+   - `greeting`  : big first line of the letter (leave "" for none)
    - `message`   : one string per paragraph
    - `signature` : how you sign off (use \n for a new line)
    ========================================================= */
 const LETTER = {
   to: "You",
-  greeting: "My dearest,",
+  greeting: "",
   message: [
     "Happy 39th monthsary! 💖 Another month with you, and I’m still so thankful to have you in my life. Thank you for your love, patience, and support. Kahit may distance and busy days, you always make me feel loved.",
     "I’m grateful for every call, message, laugh, and little moment we share. I hope we continue to grow together and make more memories. One day, we’ll finally celebrate these monthsaries side by side. Until then, I’ll keep choosing and loving you every day.",
@@ -42,7 +42,15 @@ const LETTER = {
   const urlTo = (params.get("to") || "").trim().slice(0, 40);
   const to = urlTo || (LETTER.to || "").trim() || "You";
   $("#coverTo").textContent = `For ${to}`;
-  $("#glassTitle").textContent = urlTo || !LETTER.greeting ? `Dear ${to},` : LETTER.greeting;
+  const greeting = urlTo ? `Dear ${to},` : (LETTER.greeting || "").trim();
+  const titleEl = $("#glassTitle");
+  if (greeting) {
+    titleEl.textContent = greeting;
+  } else {
+    titleEl.remove();
+    glass.removeAttribute("aria-labelledby");
+    glass.setAttribute("aria-label", "Your letter");
+  }
   $("#messageFull").textContent = LETTER.message.join(" ") + " " + LETTER.signature;
   card.setAttribute("aria-label", `Open your card${to ? ", " + to : ""}`);
 
