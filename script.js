@@ -11,11 +11,10 @@ const LETTER = {
   to: "You",
   greeting: "My dearest,",
   message: [
-    "I wanted to make you something you could open again and again — a little card that never gets lost in a drawer.",
-    "Thank you for every laugh, every quiet moment, and every ordinary day you somehow make feel special. You make the world softer just by being in it.",
-    "However far apart or close together we are, I hope you always know how much you mean to me. This is just a small reminder: you are loved, completely.",
+    "Happy 39th monthsary! 💖 Another month with you, and I’m still so thankful to have you in my life. Thank you for your love, patience, and support. Kahit may distance and busy days, you always make me feel loved.",
+    "I’m grateful for every call, message, laugh, and little moment we share. I hope we continue to grow together and make more memories. One day, we’ll finally celebrate these monthsaries side by side. Until then, I’ll keep choosing and loving you every day.",
   ],
-  signature: "Forever yours,\n— Me",
+  signature: "I love CHEW 💕\nHappy 39th monthsary! Piw piwww 🥰",
 };
 
 /* ========================================================= */
@@ -252,7 +251,7 @@ const LETTER = {
     const paras = LETTER.message.map((text) => {
       const p = document.createElement("p");
       messageEl.appendChild(p);
-      return { p, text };
+      return { p, text, chars: Array.from(text) }; // whole characters, so emoji never break
     });
 
     let pi = 0, ci = 0, t = null, done = false;
@@ -275,17 +274,17 @@ const LETTER = {
       if (!cur) { finish(); scroller.scrollTo({ top: scroller.scrollHeight, behavior: "smooth" }); return; }
       cur.p.classList.add("typing");
       ci++;
-      cur.p.textContent = cur.text.slice(0, ci);
+      cur.p.textContent = cur.chars.slice(0, ci).join("");
 
       // keep the latest line in view while typing
       if (scroller.scrollHeight > scroller.clientHeight) scroller.scrollTop = scroller.scrollHeight;
 
       let delay = 26 + Math.random() * 30;
-      const ch = cur.text[ci - 1];
+      const ch = cur.chars[ci - 1];
       if (",;:—".includes(ch)) delay += 160;
       if (".!?".includes(ch)) delay += 320;
 
-      if (ci >= cur.text.length) {
+      if (ci >= cur.chars.length) {
         cur.p.classList.remove("typing");
         pi++; ci = 0;
         delay = 600;
